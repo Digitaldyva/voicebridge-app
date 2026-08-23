@@ -70,7 +70,6 @@
       }
     },
     "windows": {
-      "signCommand": "",
       "nsis": {
         "template": "nsis/installer.nsi"
       }
