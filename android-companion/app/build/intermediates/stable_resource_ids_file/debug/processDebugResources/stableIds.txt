@@ -1,0 +1,1 @@
+com.voicebridge.ime:xml/method = 0x7f010000
