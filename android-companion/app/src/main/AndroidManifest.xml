@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:label="VoiceBridge"
         android:allowBackup="false"
@@ -12,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".ime.VoiceBridgeOverlayService"
+            android:label="VoiceBridge floating control"
+            android:exported="true"
+            android:foregroundServiceType="microphone">
+        </service>
+        <service
+            android:name=".ime.VoiceBridgeAccessibilityService"
+            android:label="VoiceBridge text insertion"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/accessibility_service" />
+        </service>
         <service
             android:name=".ime.VoiceBridgeInputMethodService"
             android:label="VoiceBridge"
